@@ -9,7 +9,7 @@ const Input = ({ value, onChangeText, onSubmitEditing }) => {
             maxLength={50}
             value={value}
             onChangeText={onChangeText}
-            // onSubmitEditing={onSubmitEditing}
+            onSubmitEditing={onSubmitEditing}
         />
     );
 };
