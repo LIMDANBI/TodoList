@@ -2,10 +2,13 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { images } from '../Image';
 
+
 const IconButton = ({type, onPressOut, id}) => {
+
     const _onPressOut = () => {
         onPressOut(id);
     };
+    
     return(
         // 터치 기반 입력 처리
         <TouchableOpacity style={styles.iconbutton} onPressOut={_onPressOut}>

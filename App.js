@@ -12,10 +12,6 @@ export default function App() {
   const [newTask, setNewTask] = useState('');
   const [tasks, setTasks] = useState({
     1: { id: '1', text: 'todo list 1', completed: false },
-    2: { id: '2', text: 'todo list 2', completed: false },
-    3: { id: '3', text: 'todo list 3', completed: false },
-    4: { id: '4', text: 'todo list 4', completed: false },
-    5: { id: '5', text: 'todo list 5', completed: false },
   });
 
   const addTask = () => { // 완료버튼을 누르면 입력된 내용을 확인하고 Input 컴포넌트를 초기화
@@ -32,6 +28,12 @@ export default function App() {
     delete currentTasks[id];
     setTasks(currentTasks);
   };
+
+  const toggleTask = (id) => {
+    const currentTasks = Object.assign({}, tasks);
+    currentTasks[id]['completed'] = !currentTasks[id]['completed'];
+    setTasks(currentTasks);
+  }
 
   const handleTextChange = (text) => { //  Input 컴포넌트에서 값이 변할 때마다 newTask에 저장
     setNewTask(text);
@@ -50,7 +52,11 @@ export default function App() {
         {Object.values(tasks)
           .reverse() // 최신 항목이 가장 앞에 보이도록 tasks를 역순으로 렌더링
           .map((item) => (
-            <Task key={item.id} item = {item} deleteTask={deleteTask}/>
+            <Task 
+              key={item.id} 
+              item = {item} 
+              deleteTask={deleteTask}
+              toggleTask={toggleTask} />
           ))}
       </ScrollView>
     </View>

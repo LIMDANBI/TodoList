@@ -3,10 +3,18 @@ import { View, StyleSheet, Dimensions, Text } from 'react-native';
 import IconButton from './IconButton';
 import { images } from '../Image';
 
-const Task = ({item, deleteTask}) => {
+const Task = ({item, deleteTask, toggleTask}) => {
+
+    IconButton.defaultProps = { // props로 onPressOut이 전달되지 않았을 경우에도 문제가 발생하지 않도록 defaultProps를 이용해 onPressOut의 기본값 지정
+        onPressOut: () => {},
+    };
+
     return(
         <View style={styles.container}>
-            <IconButton type={images.uncompleted}/>
+            <IconButton 
+                type={item.completed ? images.completed : images.uncompleted} 
+                id={item.id} 
+                onPressOut={toggleTask}/>
             <Text style={{fontSize:20, flex:1 }}> {item.text} </Text>
             <IconButton type={images.edit} />
             <IconButton type={images.delete} id={item.id} onPressOut={deleteTask}/>
