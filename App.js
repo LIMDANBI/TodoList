@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View, ScrollView } from 'react-native';
 
 import Title from './src/components/Title';
 import Input from './src/components/Input';
+import Task from './src/components/Task';
 import IconButton from './src/components/IconButton'
 import { images } from './src/Image';
 
@@ -28,16 +29,13 @@ export default function App() {
         onChangeText = {handleTextChange} // 텍스트 입력 텍스트가 변경될 때 호출되는 콜백
         onSubmitEditing = {addTask} // 텍스트 입력 제출 버튼을 눌렀을 때 호출되는 콜백
       />
-      {/* <Button
-        title = "enter" // 버튼 내부에 표시할 텍스트
-        onPress={()=> { // 사용자가 버튼을 탭할 때 호출되는 핸들러
-          addTask();
-        }}
-      /> */}
-      <IconButton type={images.uncompleted}/>
-      <IconButton type={images.completed}/>
-      <IconButton type={images.delete}/>
-      <IconButton type={images.edit}/>
+      <ScrollView>
+        <Task text="todo list 1" />
+        <Task text="todo list 2" />
+        <Task text="todo list 3" />
+        <Task text="todo list 4" />
+        <Task text="todo list 5" />
+      </ScrollView>
     </View>
   );
 }
