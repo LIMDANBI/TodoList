@@ -1,17 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View, ScrollView } from 'react-native';
+import {StyleSheet, View, ScrollView } from 'react-native';
 
 import Title from './src/components/Title';
 import Input from './src/components/Input';
 import Task from './src/components/Task';
-import IconButton from './src/components/IconButton'
-import { images } from './src/Image';
 
 export default function App() {
   const [newTask, setNewTask] = useState('');
   const [tasks, setTasks] = useState({
-    1: { id: '1', text: 'todo list 1', completed: false },
+    1: { id: '1', text: 'todo list 1', completed: false }, // example
   });
 
   const addTask = () => { // 완료버튼을 누르면 입력된 내용을 확인하고 Input 컴포넌트를 초기화

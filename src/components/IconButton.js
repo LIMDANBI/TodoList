@@ -1,7 +1,5 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { images } from '../Image';
-
 
 const IconButton = ({type, onPressOut, id}) => {
 

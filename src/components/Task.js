@@ -15,8 +15,9 @@ const Task = ({item, deleteTask, toggleTask}) => {
                 type={item.completed ? images.completed : images.uncompleted} 
                 id={item.id} 
                 onPressOut={toggleTask}/>
-            <Text style={{fontSize:20, flex:1 }}> {item.text} </Text>
-            <IconButton type={images.edit} />
+            <Text style={item.completed ? styles.completed : styles.text}> {item.text} </Text>
+            {/* 완료된 항목은 수정 버튼이 나타나지 않음 */}
+            {item.completed || <IconButton type={images.edit} />} 
             <IconButton type={images.delete} id={item.id} onPressOut={deleteTask}/>
         </View>
     );
@@ -29,6 +30,17 @@ const styles = StyleSheet.create({
         marginLeft: 7,
         alignItems: 'center',
         justifyContent: 'space-around', // 아이템들의 “둘레(around)”에 균일한 간격을 만들어 줌
+    },
+    text: {
+        fontSize: 20,
+        flex: 1,
+        color: 'black',
+    },
+    completed: {
+        fontSize: 20,
+        flex: 1,
+        color: 'gray',
+        textDecorationLine: 'line-through',
     },
 });
 
