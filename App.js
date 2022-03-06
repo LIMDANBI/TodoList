@@ -9,7 +9,7 @@ import Task from './src/components/Task';
 export default function App() {
   const [newTask, setNewTask] = useState('');
   const [tasks, setTasks] = useState({
-    1: { id: '1', text: 'todo list 1', completed: false }, // example
+    // 1: { id: '1', text: 'todo list 1', completed: false }, // example
   });
 
   const addTask = () => { // 완료버튼을 누르면 입력된 내용을 확인하고 Input 컴포넌트를 초기화
