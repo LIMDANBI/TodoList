@@ -1,7 +1,11 @@
-## Available Scripts
+# views
 
-In the project directory, you can run:
+## Project setup
+```
+npm install
+```
 
-### `npm install`
-
-### `npm start`
+### Project run
+```
+npm start
+```
