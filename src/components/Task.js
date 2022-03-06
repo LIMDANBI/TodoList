@@ -1,15 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, StyleSheet, Dimensions, Text } from 'react-native';
 import IconButton from './IconButton';
 import { images } from '../Image';
+import Input from './Input';
 
-const Task = ({item, deleteTask, toggleTask}) => {
+const Task = ({item, deleteTask, toggleTask, updateTask}) => {
+
+    const [isEditing, setIsEditing] = useState(false);
+    const [text, setText] = useState(item.text);
+
+    const _handleUpdateButtonPress = () => {
+        setIsEditing(true);
+    };
+
+    const _onSubmitEditing = () => {
+        if(isEditing){
+            const editedTask = Object.assign({}, item, {text});
+            setIsEditing(false);
+            updateTask(editedTask);
+        }
+    }
 
     IconButton.defaultProps = { // props로 onPressOut이 전달되지 않았을 경우에도 문제가 발생하지 않도록 defaultProps를 이용해 onPressOut의 기본값 지정
         onPressOut: () => {},
     };
 
-    return(
+    return isEditing ? (
+        <Input
+            value={text}
+            onChangeText={(text) => setText(text)}
+            onSubmitEditing={_onSubmitEditing}
+        />
+    ) : (
         <View style={styles.container}>
             <IconButton 
                 type={item.completed ? images.completed : images.uncompleted} 
@@ -17,7 +39,8 @@ const Task = ({item, deleteTask, toggleTask}) => {
                 onPressOut={toggleTask}/>
             <Text style={item.completed ? styles.completed : styles.text}> {item.text} </Text>
             {/* 완료된 항목은 수정 버튼이 나타나지 않음 */}
-            {item.completed || <IconButton type={images.edit} />} 
+            {item.completed || 
+            <IconButton type={images.edit} onPressOut={_handleUpdateButtonPress} />} 
             <IconButton type={images.delete} id={item.id} onPressOut={deleteTask}/>
         </View>
     );

@@ -33,6 +33,12 @@ export default function App() {
     setTasks(currentTasks);
   }
 
+  const updateTask = (item) => {
+    const currentTasks = Object.assign({}, tasks);
+    currentTasks[item.id] = item;
+    setTasks(currentTasks);
+  }
+
   const handleTextChange = (text) => { //  Input 컴포넌트에서 값이 변할 때마다 newTask에 저장
     setNewTask(text);
   }
@@ -54,7 +60,8 @@ export default function App() {
               key={item.id} 
               item = {item} 
               deleteTask={deleteTask}
-              toggleTask={toggleTask} />
+              toggleTask={toggleTask}
+              updateTask={updateTask} />
           ))}
       </ScrollView>
     </View>
